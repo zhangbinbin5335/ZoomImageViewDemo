@@ -22,6 +22,7 @@
         self.maximumZoomScale = 3.0;//default 3.0
         self.delegate = self;
         [self addSubview:self.imageView];
+        _imageView.frame = self.bounds;
     }
     
     return self;
@@ -29,8 +30,6 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    
-    _imageView.frame = [self centerFrameFromImage:_imageView.image];
 }
 
 -(void)dealloc{
@@ -81,6 +80,7 @@
     
     if (image) {
         _imageView.image = image;
+        _imageView.frame = [self centerFrameFromImage:image];
     }
 }
 
@@ -154,25 +154,14 @@
     CGFloat W = 0.0;
     CGFloat H = 0.0;
 
-    if(size.width > scrollViewSize.width ||
-      size.height > scrollViewSize.height){
-
-      CGFloat ratio = MIN(scrollViewSize.width / size.width,
-                          scrollViewSize.height / size.height);
-
-      W = ratio * size.width * self.zoomScale;
-      H = ratio * size.height * self.zoomScale;
-    }else if (size.width < scrollViewSize.width &&
-            size.height > scrollViewSize.height) {
-      W = size.width;
-      H = size.height * W / size.width;
-    }else if (size.height < scrollViewSize.height &&
-            size.width > scrollViewSize.width) {
-      H = size.height;
-      W = size.width * H / size.height;
+    if(size.width < scrollViewSize.width &&
+       size.height > scrollViewSize.height){
+        
+        H = scrollViewSize.height;
+        W = size.width * H / size.height;
     }else{
-      W = scrollViewSize.width;
-      H = size.height * W / size.width;
+        W = scrollViewSize.width;
+        H = size.height * W / size.width;
     }
 
     //长宽比特别大的情况，调整缩放倍数

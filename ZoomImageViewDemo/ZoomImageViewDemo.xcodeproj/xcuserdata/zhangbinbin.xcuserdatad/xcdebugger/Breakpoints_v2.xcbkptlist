@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../ZoomImageView/ZoomImageView.m"
-            timestampString = "510819405.763674"
+            timestampString = "511278614.812002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-setImagePath:"
             landmarkType = "7">
          </BreakpointContent>
